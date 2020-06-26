@@ -1,4 +1,4 @@
-#!/bin/bash
+$#!/bin/bash
 set -eu
 
 export VAULT_ADDR="http://0.0.0.0:8200"
@@ -26,7 +26,7 @@ exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nod
 
 exec /app/code/vault operator init -address=http://127.0.0.1:8200 >> /app/data/vault_init.txt
 
-exec vault write auth/ldap/config \
+exec /app/code/vault write auth/ldap/config \
      url="ldap://${CLOUDRON_LDAP_SERVER}" \
      userdn="${CLOUDRON_LDAP_USERS_BASE_DN}" \
      groupdn="${CLOUDRON_LDAP_GROUPS_BASE_DN}" \

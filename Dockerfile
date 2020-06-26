@@ -4,6 +4,8 @@ FROM cloudron/base:2.0.0@sha256:f9fea80513aa7c92fe2e7bf3978b54c8ac5222f47a9a32a7
 EXPOSE 8200 8201
 
 ENV VAULT_VERSION=1.4.2
+ENV VAULT_ADDR="http://127.0.0.1:8200"
+ENV VAULT_API_ADDR="http://127.0.0.1:8200"
 
 # setting config path
 ENV CONFIG_PATH="/app/data/"
