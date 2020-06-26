@@ -1,7 +1,8 @@
 {
+  "id": "com.vault.cloudron",
   "version": "0.1.0",
   "healthCheckPath": "/",
-  "httpPort": 3000,
+  "httpPort": 8200,
   "addons": {
     "localstorage": {}
   },
