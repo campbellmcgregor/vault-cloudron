@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eu
 
-export VAULT_ADDR="http://0.0.0.0:8200"
-export VAULT_API_ADDR="http://0.0.0.0:8200"
 
 if [ ! -e "config.hcl" ]; then
 	cat <<-EOF > "$CONFIG_PATH/config.hcl"

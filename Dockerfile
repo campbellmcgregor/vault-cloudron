@@ -9,6 +9,7 @@ ENV VAULT_API_ADDR="http://127.0.0.1:8200"
 
 # setting config path
 ENV CONFIG_PATH="/app/data/"
+ENV VAULT="/app/code/vault"
 
 # creating some cool directories
 RUN mkdir -p /app/code /app/pkg /app/data/vault-store
