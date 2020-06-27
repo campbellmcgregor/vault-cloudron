@@ -23,12 +23,14 @@ RUN wget https://releases.hashicorp.com/vault/1.4.2/vault_${VAULT_VERSION}_linux
 RUN unzip vault_${VAULT_VERSION}_linux_amd64.zip -d /app/code
 RUN rm -f /vault_${VAULT_VERSION}_linux_amd64.zip
 
-# copy start script into the code dir
+# copy start script and LDAP config
 COPY start.sh /app/pkg
+COPY configure_ldap.sh /app/data
 
 # organise some permissions and make some stuff executable
 RUN chown -R cloudron:cloudron /app/code /app/pkg
 RUN chmod +x /app/pkg/start.sh
+RUN chmod +x /app/data/configure_ldap.sh
 
 # sorting out the supervisor configs and their log files
 RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
