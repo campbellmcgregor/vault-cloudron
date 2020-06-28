@@ -4,7 +4,7 @@ set -eu
 
 if [ ! -e "config.hcl" ]; then
 	cat <<-EOF > "$CONFIG_PATH/config.hcl"
-disable_mlock = true
+disable_mlock = false
 
 ui = true
 storage "file" {
