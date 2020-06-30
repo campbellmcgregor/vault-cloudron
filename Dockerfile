@@ -4,6 +4,7 @@ RUN apt-get update && \
     apt-get install -y libcap2-bin && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
+
 # this is the default port for the webui and the REST gui
 EXPOSE 8200 8201
 
@@ -20,9 +21,11 @@ WORKDIR /app/code
 
 # use wget to the latest binary compile for Linux
 ENV VAULT_VERSION=1.4.2
+RUN mkdir -p /app/pkg /app/code && \
+    chown -R cloudron:cloudron /app/code /app/pkg 
 RUN wget https://releases.hashicorp.com/vault/1.4.2/vault_${VAULT_VERSION}_linux_amd64.zip  && \
     unzip vault_${VAULT_VERSION}_linux_amd64.zip -d /app/code && \
-    rm -f /vault_${VAULT_VERSION}_linux_amd64.zip
+    rm -f /app/code/vault_${VAULT_VERSION}_linux_amd64.zip
 
 # set file caps so the executable can run mlock as non privileged user (https://github.com/hashicorp/vault/issues/122)
 RUN setcap cap_ipc_lock=+ep /app/code/vault
