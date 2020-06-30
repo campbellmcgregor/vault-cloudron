@@ -37,3 +37,7 @@ exec:
 .PHONY: logs
 logs:
 	cloudron logs -f --app ${CLOUDRON_APP}
+
+.PHONY: restart
+restart:
+	cloudron restart --app ${CLOUDRON_APP}
