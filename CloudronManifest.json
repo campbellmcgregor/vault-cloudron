@@ -11,5 +11,6 @@
   "capabilities": [
     "mlock"
   ],
-  "manifestVersion": 2
+  "manifestVersion": 2,
+  "icon": "file://icon.png"
 }
