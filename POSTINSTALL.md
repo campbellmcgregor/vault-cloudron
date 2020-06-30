@@ -1,7 +1,13 @@
-**Vault**
+# Hashicorp Vault
 
-Vault does not integrate with Cloudron's users. The vault is sealed and you will need the unlock keys.
-The keys are stored in the /app/data folder called _vault_init.txt_. You will need to download these
-and distribute them. The vault can only be initalised once.
+To use your Vault installation you need to unseal it after each restart. For this you need at least three of the five unseal keys.
 
-You can access
+These keys will be generated at the first startup of the app. The keys will not be stored inside the app, but only printed to the log in Cloudron. Please get them from there and store them in a safe place or distribute them among trusted entities.
+
+**The vault can only be initialized once!**
+
+Once the vault is unsealed you still need to configure ldap authentication. For this the script `/app/pkg/ldap-config.sh` exists. Running the script requires you to enter the root token.
+
+## TODO
+
+- Vault does not integrate with Cloudron's users, yet.

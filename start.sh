@@ -1,10 +1,11 @@
 #!/bin/bash
 set -eu
 
+set -x
 
 if [ ! -e "config.hcl" ]; then
 	cat <<-EOF > "$CONFIG_PATH/config.hcl"
-disable_mlock = false
+disable_mlock = true
 
 ui = true
 storage "file" {
@@ -12,15 +13,20 @@ storage "file" {
 }
 
 listener "tcp" {
- address     = "0.0.0.0:8200"
- tls_disable = 1
+  address     = "0.0.0.0:8200"
+  tls_disable = 1
 }
 EOF
 fi
 
 chown -R cloudron:cloudron /run /app/data
+mkdir -p /app/data/vault-store
 
-exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i vault
+# Init the vault if not yet done. Keys printed to stdout need to be copied and stored safely
+if [ ! -e "init-completed" ]; then
+  ( sleep 20;
+  /app/code/vault operator init -address=http://127.0.0.1:8200;
+  touch init-completed)&
+fi
 
-exec /app/code/vault operator init -address=http://127.0.0.1:8200 >> /app/data/vault_init.txt
-
+exec gosu cloudron:cloudron /app/code/vault server -config=/app/data/config.hcl
