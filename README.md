@@ -1,9 +1,8 @@
 **Vault**
 
-Vault does not integrate with Cloudron's users (yet). The vault is sealed and you will need the unlock keys.
-The keys are stored in the /app/data folder called _vault_init.txt_. You will need to download these
-and distribute them. The vault can only be initalised once.
+To use your Vault installation you need to unseal it after each restart. For this you need at least three of the five unseal keys.
 
-You can access the webgui {appurl/ui} you will need 3 of your unseal keys and the Inital Root Token.
+The keys will not be stored inside the app. You can initialise the vault after install by going to the URL where the app was installed. Following directions from there. After download store them in a safe place or distribute them among trusted entities.
+
 
 Docs can be found here https://learn.hashicorp.com/vault/getting-started/deploy
